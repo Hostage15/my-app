@@ -2,17 +2,17 @@
     <div>
         <div class="field">
             <label>Product: </label>
-            <select>
+            <select [(ngModel)]="product" name="product">
                 <option value="">-- Select a product --</option>
                 <option *ngFor="let product of products">{{product.name}}</option>
             </select>
         </div>
         <div class="field">
             <label>Quantity: </label>
-            <input type="number" placeholder="Quantity" min="0">
+            <input type="number" placeholder="Quantity" min="0" [(ngModel)]="quantity" name="quantity">
         </div>
         <div class="add-to-cart-button">
-            <button type="button">Add to Cart</button>
+            <button type="button" (click)="addToCart()">Add to Cart</button>
         </div>
         <div class="cart">
             <table></table>
