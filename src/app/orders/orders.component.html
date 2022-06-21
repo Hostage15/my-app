@@ -1,0 +1,21 @@
+<form>
+    <div>
+        <div class="field">
+            <label>Product: </label>
+            <select>
+                <option value="">-- Select a product --</option>
+                <option *ngFor="let product of products">{{product.name}}</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Quantity: </label>
+            <input type="number" placeholder="Quantity" min="0">
+        </div>
+        <div class="add-to-cart-button">
+            <button type="button">Add to Cart</button>
+        </div>
+        <div class="cart">
+            <table></table>
+        </div>
+    </div>
+</form>
