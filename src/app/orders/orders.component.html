@@ -10,12 +10,17 @@
         <div class="field">
             <label>Quantity: </label>
             <input type="number" placeholder="Quantity" min="0" [(ngModel)]="quantity" name="quantity">
+
+        </div>
+        <div class="cart">
+            <span style="color: red" *ngIf="errorMsg !=''">{{errorMsg}}</span>
+            <span *ngIf="this.product && this.quantity">{{this.product}} * {{this.quantity}}</span>
         </div>
         <div class="add-to-cart-button">
             <button type="button" (click)="addToCart()">Add to Cart</button>
         </div>
-        <div class="cart">
-            <table></table>
+        <div class="submit-button">
+            <button type="button">Submit Order </button>
         </div>
     </div>
 </form>
