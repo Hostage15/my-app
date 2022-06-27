@@ -31,7 +31,7 @@ export class OrdersComponent implements OnInit {
       this.calculatePrice();
       console.log('Product: ', this.product);
       console.log('Quantity: ', this.quantity);
-    } else this.errorMsg = 'Please enter both product & quantity';
+    } else this.errorMsg = 'Please enter both product & quantity'; // Validate input
   }
 
   calculatePrice(): void {
@@ -48,32 +48,36 @@ export class OrdersComponent implements OnInit {
     });
     console.log(productBundle, 'BUNDEL');
     switch (productBundle.length) {
-      case 2:
+      case 2: //Cheese
         var remainder = this.quantity % 5;
         console.log(remainder, '%5');
         if (this.quantity >= 5) {
           if (remainder == 0) {
             this.bundlePrice = 20.95 * (this.quantity / 5);
+          } else {
+            this.singlePriceCE(remainder);
           }
-          if (remainder == 1 || remainder == 2)
-            this.bundlePrice =
-              ((this.quantity - remainder) / 5) * 20.95 + remainder * 5.95;
-          if (remainder == 3 || remainder == 4) {
-            this.bundlePrice =
-              ((this.quantity - remainder) / 5) * 20.95 +
-              14.95 +
-              (remainder - 3) * 5.95;
-              this.bundlePrice = Math.round(this.bundlePrice * 100)/100
-          }
-        }
-        //Under 5
+        } else this.singlePriceCE(this.quantity)
         break;
-      case 3:
+      case 3: // Ham
         var remainder = this.quantity % 8;
         break;
       default:
-        console.log('SOY S');
+        console.log('SOY S'); // Soy sauce
     }
     console.log('Bundle price: ', this.bundlePrice);
+  }
+
+  singlePriceCE(quantity: any) {
+    if (quantity == 1 || quantity == 2)
+      this.bundlePrice =
+        ((this.quantity - quantity) / 5) * 20.95 + quantity * 5.95;
+    if (quantity == 3 || quantity == 4) {
+      this.bundlePrice =
+        ((this.quantity - quantity) / 5) * 20.95 +
+        14.95 +
+        (quantity - 3) * 5.95;
+      this.bundlePrice = Math.round(this.bundlePrice * 100) / 100;
+    }
   }
 }
