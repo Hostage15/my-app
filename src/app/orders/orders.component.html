@@ -2,24 +2,37 @@
     <div>
         <div class="field">
             <label>Product: </label>
-            <select [(ngModel)]="product" name="product">
+            <select [(ngModel)]="product" name="product" (ngModelChange)="errorMsg=''; quantity=0">
                 <option value="">-- Select a product --</option>
                 <option *ngFor="let product of products">{{product.name}}</option>
             </select>
         </div>
         <div class="field">
             <label>Quantity: </label>
-            <input type="number" placeholder="Quantity" min="0" [(ngModel)]="quantity" name="quantity">
+            <input type="number" placeholder="Quantity" min="0" [(ngModel)]="quantity" name="quantity"
+                (ngModelChange)="errorMsg=''">
         </div>
         <div class="cart">
             <span style="color: red" *ngIf="errorMsg !=''">{{errorMsg}}</span>
             <span *ngIf="this.product && this.quantity">{{this.product}} * {{this.quantity}}</span>
         </div>
         <div class="add-to-cart-button">
-            <button type="button" (click)="addToCart()">Add to Cart</button>
+            <button type="button" (click)="addToOrder()">Add to Order</button>
+        </div>
+        <div class="clear-cart-button">
+            <button type="button" (click)="clearOrder()">Clear Order</button>
         </div>
         <div class="submit-button">
-            <button type="button">Submit Order </button>
+            <button type="button" (click)="submitOrder()">Submit Order </button>
         </div>
+    </div>
+    <div>
+        <h4>Order detail: </h4>
+        <div *ngFor="let item of order">
+            <p>{{item.product}} * {{item.quantity}} : ${{item.price}}</p>
+        </div>
+        <span *ngIf="totalPrice">
+            <h4>Total Price:</h4> ${{totalPrice}}
+        </span>
     </div>
 </form>
