@@ -8,7 +8,9 @@ To install Angular on your local system, you need the following: [Node.js](https
 
 ### Clone the repo
 
+```
 git clone https://github.com/Hostage15/my-app.git
+```
 
 ### Install npm packages
 
@@ -18,15 +20,13 @@ Install the `npm` packages and verify that it works:
 npm install -g @angular/cli
 ```
 
-The npm start command builds (compiles TypeScript and copies assets) the application into dist/, watches for changes to the source files, and runs lite-server on port 3000.
 
-Shut it down manually with Ctrl-C.
 
 ## Run and test
 
 cd to the project's directory
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. Shut it down manually with `Ctrl-C`.
 
 ## Build
 
