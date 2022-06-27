@@ -1,0 +1,26 @@
+form {
+  width: 400px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.field {
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  flex-grow: 1;
+}
+
+label {
+  margin-right: 20px;
+  width: 120px;
+}
+
+.submit-button {
+    float: right;
+}
