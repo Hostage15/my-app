@@ -15,12 +15,23 @@ export class OrdersComponent implements OnInit {
   public bundlePrice = 0 as any;
   public quantity: any;
   public errorMsg = '' as any;
+  public order = [] as any;
+  public totalPrice = 0;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  /**
+   * Initialize application.
+   */
+  ngOnInit(): void {
+    this.order = [];
+  }
 
-  addToCart(): void {
+
+  /**
+   * Add product and quantity to order.
+   */
+  addToOrder(): void {
     if (this.quantity > 0 && this.product != '') {
       this.errorMsg = '';
       products.forEach((p) => {
@@ -31,9 +42,29 @@ export class OrdersComponent implements OnInit {
       this.calculatePrice();
       console.log('Product: ', this.product);
       console.log('Quantity: ', this.quantity);
+      var item = {
+        product: this.product,
+        quantity: this.quantity,
+        price: this.bundlePrice,
+      };
+      this.order.push(item);
+      console.log('Order: ', this.order);
     } else this.errorMsg = 'Please enter both product & quantity'; // Validate input
   }
 
+  /**
+   * Reset order details, total price, and input fields.
+   */
+  clearOrder() {
+    this.order = [];
+    this.totalPrice = 0;
+    this.product = '';
+    this.quantity = 0;
+  }
+
+  /**
+   * Calculate product price based on bundle information.
+   */
   calculatePrice(): void {
     let productBundle = [] as any;
     let selectedProductCode = '';
@@ -66,12 +97,27 @@ export class OrdersComponent implements OnInit {
           } else this.singlePriceHM(remainder);
         } else this.singlePriceHM(this.quantity);
         break;
-      default:
-        this.bundlePrice = Math.round(this.quantity * 11.95 * 100) / 100; // Soy sauce
+      default: // Soy sauce
+        this.bundlePrice = Math.round(this.quantity * 11.95 * 100) / 100;
     }
     console.log('Bundle price: ', this.bundlePrice);
   }
 
+  /**
+   * Calculate total price.
+   */
+  submitOrder() {
+    this.totalPrice = 0;
+    this.order.forEach((item: any) => {
+      this.totalPrice += item.price;
+    });
+    this.totalPrice = Math.round(this.totalPrice * 100) / 100;
+  }
+
+  /**
+   * Calculate the bundle price of CE for remainder or quantity that is less than 5
+   * @param quantity Remainder or quantity that is less than 5
+   */
   singlePriceCE(quantity: any) {
     if (quantity == 1 || quantity == 2)
       this.bundlePrice =
@@ -85,6 +131,10 @@ export class OrdersComponent implements OnInit {
     this.bundlePrice = Math.round(this.bundlePrice * 100) / 100;
   }
 
+  /**
+   * Calculate the bundle price of HM for remainder or quantity that is less than 8
+   * @param quantity Remainder or quantity that is less than 8
+   */
   singlePriceHM(quantity: any) {
     var eightBundlePrice = ((this.quantity - quantity) / 8) * 40.95;
     switch (quantity) {

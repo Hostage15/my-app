@@ -2,6 +2,8 @@ form {
   width: 400px;
   padding: 10px;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .field {
@@ -22,5 +24,13 @@ label {
 }
 
 .submit-button {
-    float: right;
+  float: right;
+}
+
+.add-to-cart-button {
+  margin-top: 10px;
+}
+
+.clear-cart-button {
+  margin-top: 5px;
 }
