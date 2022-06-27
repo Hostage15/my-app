@@ -1,14 +1,32 @@
-# MyApp
+# MyApp - Coding Challenge
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
 
-## Development server
+## Get started
+
+To install Angular on your local system, you need the following: [Node.js](https://nodejs.org/en/) & [npm package manager](https://docs.npmjs.com/about-npm/).
+
+### Clone the repo
+
+git clone https://github.com/Hostage15/my-app.git
+
+### Install npm packages
+
+Install the `npm` packages and verify that it works:
+
+```
+npm install -g @angular/cli
+```
+
+The npm start command builds (compiles TypeScript and copies assets) the application into dist/, watches for changes to the source files, and runs lite-server on port 3000.
+
+Shut it down manually with Ctrl-C.
+
+## Run and test
+
+cd to the project's directory
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
