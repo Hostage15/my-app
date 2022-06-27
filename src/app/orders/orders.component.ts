@@ -54,16 +54,20 @@ export class OrdersComponent implements OnInit {
         if (this.quantity >= 5) {
           if (remainder == 0) {
             this.bundlePrice = 20.95 * (this.quantity / 5);
-          } else {
-            this.singlePriceCE(remainder);
-          }
-        } else this.singlePriceCE(this.quantity)
+          } else this.singlePriceCE(remainder);
+        } else this.singlePriceCE(this.quantity);
         break;
       case 3: // Ham
         var remainder = this.quantity % 8;
+        console.log(remainder, '%8');
+        if (this.quantity >= 8) {
+          if (remainder == 0) {
+            this.bundlePrice = 40.95 * (this.quantity / 8);
+          } else this.singlePriceHM(remainder);
+        } else this.singlePriceHM(this.quantity);
         break;
       default:
-        console.log('SOY S'); // Soy sauce
+        this.bundlePrice = Math.round(this.quantity * 11.95 * 100) / 100; // Soy sauce
     }
     console.log('Bundle price: ', this.bundlePrice);
   }
@@ -77,7 +81,35 @@ export class OrdersComponent implements OnInit {
         ((this.quantity - quantity) / 5) * 20.95 +
         14.95 +
         (quantity - 3) * 5.95;
-      this.bundlePrice = Math.round(this.bundlePrice * 100) / 100;
     }
+    this.bundlePrice = Math.round(this.bundlePrice * 100) / 100;
+  }
+
+  singlePriceHM(quantity: any) {
+    var eightBundlePrice = ((this.quantity - quantity) / 8) * 40.95;
+    switch (quantity) {
+      case 1:
+        this.bundlePrice = eightBundlePrice + 7.95;
+        break;
+      case 2:
+        this.bundlePrice = eightBundlePrice + 13.95;
+        break;
+      case 3:
+        this.bundlePrice = eightBundlePrice + 13.95 + 7.95;
+        break;
+      case 4:
+        this.bundlePrice = eightBundlePrice + 2 * 13.95;
+        break;
+      case 5:
+        this.bundlePrice = eightBundlePrice + 29.95;
+        break;
+      case 6:
+        this.bundlePrice = eightBundlePrice + 29.95 + 7.95;
+        break;
+      case 7:
+        this.bundlePrice = eightBundlePrice + 13.95 + 29.95;
+        break;
+    }
+    this.bundlePrice = Math.round(this.bundlePrice * 100) / 100;
   }
 }
