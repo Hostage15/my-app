@@ -26,7 +26,10 @@ npm install -g @angular/cli
 
 cd to the project's directory
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. Shut it down manually with `Ctrl-C`.
+Run `npm install -g @angular/cli`
+
+Then run `ng serve` for a dev server. If the `npm` command is not found, try to run `npm link @angular/cli` or `sudo nmp link @angular/cli`.
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. Shut it down manually with `Ctrl-C`.
 
 ## Build
 
